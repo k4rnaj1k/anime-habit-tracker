@@ -1,11 +1,14 @@
 'use client'
-import { useState } from "react";
-import { getActivities, saveDailyActivity } from "../utils/data-utils/data-utils";
+import { useEffect, useState } from "react";
+import { Activity, getActivities, saveDailyActivity } from "../utils/data-utils/data-utils";
 import { getISODate } from '../utils/data-utils/date-utils';
 
 export default function TrackActivity() {
     const [formState, setFormState] = useState({ activityName: '', date: '' });
-    const activities = getActivities();
+    const [activities, setActivities] = useState<Activity[]>([]);
+    useEffect(() => {
+        setActivities(getActivities())
+    }, []);
     return <div style={{ display: 'flex', justifyContent: 'center', width: '100%'}}> <form style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', width: '20vw' }} onSubmit={(e) => {
         e.preventDefault();
         saveDailyActivity(getISODate(formState.date), formState.activityName || activities[0].name);
