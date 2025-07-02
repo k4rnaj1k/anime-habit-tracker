@@ -19,7 +19,7 @@ export const EventsView = () => {
         setActivities(loadedActivities);
     }, []);
 
-    const mappedData = useMemo(() => mapToCalendar(data), [data, currentActivity, currentDate]);
+    const mappedData = useMemo(() => mapToCalendar(data, currentActivity), [data, currentActivity]);
 
     return <>
         <div id="calendar-wrapper">
@@ -37,7 +37,7 @@ export const EventsView = () => {
                     dark: ['#383838', '#4D455D', '#7DB9B6', '#F5E9CF', '#E96479'],
                 }}
                 eventHandlers={{
-                    onClick: _ => activity => {
+                    onClick: () => activity => {
                         setCurrentDate(activity.date);
                     }
                 }}

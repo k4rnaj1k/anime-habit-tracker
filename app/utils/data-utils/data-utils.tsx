@@ -16,14 +16,17 @@ const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 const initData = () => {
     localStorage.setItem('initDate', JSON.stringify(new Date()));
     const data = [];
-    let day = new Date().getTime();
+    const day = new Date().getTime();
     data.push({ date: getISODate(new Date(day)), activities: [] });
     data.push({ date: getISODate(new Date(day + (TWENTY_FOUR_HOURS * 300))), activities: [] });
     return data;
 };
 
 const addDay = () => {
-    const data = localStorage.getItem('data',);
+    const data = getData();
+    const day = new Date().getTime();
+    data.push({ date: getISODate(new Date(day + (TWENTY_FOUR_HOURS * 300))), activities: [] });
+    saveData(data);
 }
 
 const saveData = (data: Data[]) => {
