@@ -1,0 +1,4 @@
+services:
+  app:
+    build: .
+    container_name: anime_habit_tracker
