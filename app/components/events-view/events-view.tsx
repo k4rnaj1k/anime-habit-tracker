@@ -23,14 +23,14 @@ export const EventsView = () => {
 
     return <>
         <div id="calendar-wrapper">
-            <div>{activities.map(activity => <h1 key={activity.name} onClick={() => setCurrentActivity(activity.name)}>{activity.name}</h1>)}</div>
+            <div>{activities.map(activity => <h3 key={activity.name} onClick={() => setCurrentActivity(activity.name)}>{activity.name}</h3>)}</div>
             <ActivityCalendar
                 data={mappedData}
                 showWeekdayLabels
-                blockSize={20}
-                blockRadius={7}
-                blockMargin={5}
-                fontSize={24}
+                blockSize={14}
+                blockRadius={3}
+                blockMargin={2}
+                fontSize={12}
                 weekStart={1}
                 theme={{
                     light: ['#f0f0f0', '#c4edde', '#7ac7c4', '#f73859', '#384259'],

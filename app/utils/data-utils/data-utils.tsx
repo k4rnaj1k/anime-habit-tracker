@@ -18,14 +18,14 @@ const initData = () => {
     const data = [];
     const day = new Date().getTime();
     data.push({ date: getISODate(new Date(day)), activities: [] });
-    data.push({ date: getISODate(new Date(day + (TWENTY_FOUR_HOURS * 300))), activities: [] });
+    data.push({ date: getISODate(new Date(day + (TWENTY_FOUR_HOURS * 200))), activities: [] });
     return data;
 };
 
 const addDay = () => {
     const data = getData();
     const day = new Date().getTime();
-    data.push({ date: getISODate(new Date(day + (TWENTY_FOUR_HOURS * 300))), activities: [] });
+    data.push({ date: getISODate(new Date(day + (TWENTY_FOUR_HOURS * 200))), activities: [] });
     saveData(data);
 }
 

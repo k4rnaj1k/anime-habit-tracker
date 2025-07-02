@@ -19,9 +19,9 @@ export default function RootLayout({
         <BackgroundWrapper>
           <header>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-              <Link href="/"><h1>Home</h1></Link>
-              <Link href="/log"><h1>Log activity</h1></Link>
-              <Link href="/add-activity"><h1>Add activity</h1></Link>
+              <Link href="/"><h2>Home</h2></Link>
+              <Link href="/log"><h2>Log activity</h2></Link>
+              <Link href="/add-activity"><h2>Add activity</h2></Link>
             </div>
           </header>
           {children}

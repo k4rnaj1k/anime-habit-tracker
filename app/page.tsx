@@ -8,9 +8,9 @@ export default function Home() {
         <EventsView />
         <div style={{
           position: 'absolute', left: '2%',
-          top: '50%'
+          top: '62%'
         }}>
-          <iframe src="https://alerts.in.ua/lite?embed" style={{ width: '500px', height: '300px', border: 'none', background: 'none' }} title="Мапа повітряних тривог" frameBorder="0" ></iframe>
+          <iframe src="https://alerts.in.ua/lite?embed" style={{ width: '100%', height: '100%', border: 'none', background: 'none' }} title="Мапа повітряних тривог" frameBorder="0" ></iframe>
         </div>
       </main>
     </div>
