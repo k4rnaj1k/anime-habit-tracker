@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getDb } from "@/app/db";
 import * as SqliteDataService from "@/app/utils/data-utils/sqlite-data-utils";
 // If you have a repository/service, import and call it instead.
@@ -11,9 +11,8 @@ export async function GET() {
   return NextResponse.json(activities || []);
 }
 
-export async function POST(req: Request, ctx: { params: { day: string } }) {
+export async function POST(req: Request) {
     const activity = await req.json();
-    console.log(activity)
     SqliteDataService.createActivity(activity);
     return NextResponse.json({ message: 'Success'});
 }

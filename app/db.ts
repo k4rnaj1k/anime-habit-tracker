@@ -5,11 +5,9 @@ sqlite3.verbose();
 
 // Augment global to survive HMR in dev so we don't create many connections.
 declare global {
-  // eslint-disable-next-line no-var
   var __dbPromise:
     | Promise<Database<sqlite3.Database, sqlite3.Statement>>
     | undefined;
-  // eslint-disable-next-line no-var
   var __migrationsDone: boolean | undefined;
 }
 
@@ -31,6 +29,10 @@ async function initDb() {
         activity_name text,
         done boolean,
         primary key(day, activity_name)
+    );
+
+    create table if not exists fcm_token(
+        token text primary key
     );
 
     CREATE INDEX IF NOT EXISTS idx_activity_days_day_done

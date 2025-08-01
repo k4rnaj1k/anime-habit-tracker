@@ -18,7 +18,6 @@ export async function GET(_req: Request, ctx: { params: Promise<{ day: string }>
   return NextResponse.json(await SqliteDataService.getDayData(day));
 }
 
-// (optional) handle POST as well
 export async function POST(req: Request, ctx: { params: Promise<{ day: string }> }) {
   const body: { activity: string; done: boolean } = await req
     .json()
