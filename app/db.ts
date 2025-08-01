@@ -21,7 +21,20 @@ async function initDb() {
 
   await db.exec("PRAGMA foreign_keys = ON;");
   await db.exec("PRAGMA journal_mode = WAL;");
-  await db.exec("")
+  await db.exec(`
+    create table if not exists activity (
+        name text primary key
+    );
+
+    create table if not exists activities_days(
+        day text,
+        activity_name text,
+        done boolean,
+        primary key(day, activity_name)
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_activity_days_day_done
+    ON activities_days(day, done);`);
   return db;
 }
 

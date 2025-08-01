@@ -3,25 +3,28 @@
 import { getDb } from "@/app/db";
 import { Activity } from "./data-utils";
 
-const getActivitiesList = async () => {
+export async function getActivitiesList() {
     const db = await getDb();
-    return db.all('SELECT * FROM activities');
+    return db.all('SELECT * FROM activity');
 };
 
-const updateDay = async ({ day, activityData }: { day: string, activityData: Activity & { done: boolean } }) => {
+export async function createActivity(activity: Activity) {
     const db = await getDb();
-    db.exec(`insert into activity_days values(${day}, ${activityData.name}, ${activityData.done})`);
+    console.log(activity.name);
+    await db.run({ sql: `INSERT INTO activity (name) values (?)`, values: [activity.name] });
 }
 
-const getDayData = async(day: string) => {
+export async function updateDay({ day, activityData }: { day: string, activityData: Activity & { done: boolean } }) {
     const db = await getDb();
-    db.all(`select * from activity_days where day=${day}`);
+    await db.run({
+        sql: `INSERT OR REPLACE INTO activities_days (day, activity_name, done) VALUES (?, ?, ?)`,
+        values: [day, activityData.name, activityData.done ? 1 : 0]
+    });
 }
 
-const SqliteDataService = {
-    getActivitiesList,
-    updateDay,
-    getDayData
-};
+export async function getDayData(day: string) {
+    const db = await getDb();
+    const data = await db.all<{ day: string, activity_name: string, done: boolean }[]>(`select activity_name, done from activities_days where day=?`, [day]);
 
-export default SqliteDataService;
+    return data;
+}
